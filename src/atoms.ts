@@ -1,30 +1,19 @@
-import { atom, selector } from "recoil";
+import { atom, selector, useRecoilValue } from "recoil";
 
-export enum Categories {
-  "TODO" = "TODO",
-  "DOING" = "DOING",
-  "DONE" = "DONE",
-}
-
-export interface ITodos {
-  text: string;
+export interface ITodo {
   id: number;
-  category: Categories;
+  text: string;
 }
 
-export const todosState = atom<ITodos[]>({
+export interface ITodoState {
+  [key: string]: ITodo[];
+}
+
+export let todoState = atom<ITodoState>({
   key: "todos",
-  default: [],
-});
-export const categoryState = atom<Categories>({
-  key: "category",
-  default: Categories.TODO,
-});
-export const todoSelector = selector({
-  key: "todoSelector",
-  get: ({ get }) => {
-    const todos = get(todosState);
-    const category = get(categoryState);
-    return todos.filter((todo) => todo.category === category);
+  default: {
+    todo: [],
+    doing: [],
+    done: [],
   },
 });
