@@ -1,4 +1,5 @@
 import {
+  naverLogin,
   naver_CLIENT_ID,
   naver_CLIENT_SECRET,
   naver_REDIRECT_URI,
@@ -7,9 +8,8 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { getAllJSDocTagsOfKind } from "typescript";
-import { naverLogin } from "./Login";
+
 function NaverLoggedIn() {
-    
   const { naver } = window as any;
   const location = useLocation();
   const TOKEN = location.hash.split("=")[1].split("&")[0];

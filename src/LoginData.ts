@@ -6,3 +6,11 @@ export const ADMIN_KEY = "	3620a1d3d7fd9d73b0ed4a00dd6c4961";
 export const naver_CLIENT_ID = "zm4zPtCBVYDxgaRJeDxA";
 export const naver_CLIENT_SECRET = "wromtwyBwM";
 export const naver_REDIRECT_URI = "http://localhost:3000/naverLoggedIn";
+const { naver } = window as any;
+export const naverLogin = new naver.LoginWithNaverId({
+  clientId: `${naver_CLIENT_ID}`,
+  callbackUrl: `${naver_REDIRECT_URI}`,
+  isPopup: false,
+  loginButton: { color: "green", type: 3, height: 58 },
+  callbackHandle: true,
+});
