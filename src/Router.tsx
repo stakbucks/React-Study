@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./Home";
 import LoggedIn from "./LoggedIn";
+import Login from "./Login";
 import NaverLoggedIn from "./NaverLoggedIn";
 
 const router = createBrowserRouter([
@@ -11,15 +12,17 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />,
-      },
-      {
-        path: "/loggedIn",
-        element: <LoggedIn />,
-      },
-      {
-        path: "/naverLoggedIn",
-        element: <NaverLoggedIn />,
+        element: <Login />,
+        children: [
+          {
+            path: "naverLoggedIn",
+            element: <NaverLoggedIn />,
+          },
+          {
+            path: "/loggedIn",
+            element: <LoggedIn />,
+          },
+        ],
       },
     ],
   },

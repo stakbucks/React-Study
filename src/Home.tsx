@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Login from "./Login";
 
 const Form = styled.form`
@@ -25,7 +25,7 @@ function Home() {
   };
   return (
     <div>
-      <Login />
+      <Outlet />
     </div>
   );
 }

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { loggedInState } from "./LoginData";
 import {
+  naverLogin,
   naver_CLIENT_ID,
   naver_REDIRECT_URI,
   REDIRECT_URI,
@@ -13,29 +17,37 @@ const NaverBtn = styled.img`
   height: 50px;
 `;
 
-const { naver } = window as any;
-export const naverLogin = new naver.LoginWithNaverId({
-  clientId: `${naver_CLIENT_ID}`,
-  callbackUrl: `${naver_REDIRECT_URI}`,
-  isPopup: false,
-  loginButton: { color: "green", type: 3, height: 58 },
-  callbackHandle: true,
-});
-
 function Login() {
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const handleLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
   };
+  const [status, setStatus] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [loggedIn, setLoggedIn] = useRecoilState(loggedInState);
 
   useEffect(() => {
     naverLogin.init();
+    naverLogin.getLoginStatus(function (status: any) {
+      if (status) {
+        setLoggedIn(status);
+        console.log(status);
+      }
+    });
   }, []);
 
   return (
     <div>
-      <KakaoBtn src="login.png" onClick={handleLogin} />
-      <div id="naverIdLogin" />
+      <div>
+        <KakaoBtn
+          style={{ display: loggedIn ? "none" : "" }}
+          src="login.png"
+          onClick={handleLogin}
+        />
+        <div id="naverIdLogin" />
+      </div>
+      <Outlet />
     </div>
   );
 }
