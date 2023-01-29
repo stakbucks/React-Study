@@ -1,12 +1,12 @@
 import { atom } from "recoil";
-
-export interface ITodoListState {
-  id: number;
-  todo: string;
-  done: boolean;
+export interface ILoggedInState {
+  status: boolean;
+  username: string;
 }
-
-export const todoListState = atom<ITodoListState[]>({
-  key: "todoList",
-  default: [],
+export const loggedInState = atom<ILoggedInState>({
+  key: "loggedIn",
+  default: {
+    status: false,
+    username: "",
+  },
 });
