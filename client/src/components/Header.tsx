@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { loggedInState } from "../../src/atoms";
+import { useCookies } from "react-cookie";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,8 +33,10 @@ const Container = styled.div`
 `;
 
 function Header() {
+  const [cookie, setCookie, removeCookie] = useCookies(["access_token"]);
   const [loggedIn, setLoggedIn] = useRecoilState(loggedInState);
   const handleLogout = () => {
+    removeCookie("access_token");
     setLoggedIn({
       status: false,
       username: "",

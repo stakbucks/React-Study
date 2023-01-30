@@ -6,6 +6,7 @@ import { useQuery, useMutation } from "react-query";
 import { loggedInState } from "../../src/atoms";
 import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 const SERVER_BASE_URL = "http://localhost:4000";
 
 const Wrapper = styled.div`
@@ -34,18 +35,23 @@ function Login() {
   const { register, setValue, handleSubmit } = useForm();
   const onValid = ({ username, password }: any) => {
     axios
-      .post(`${SERVER_BASE_URL}/login`, {
-        username,
-        password,
-      })
+      .post(
+        `${SERVER_BASE_URL}/login`,
+        {
+          username,
+          password,
+        },
+        { withCredentials: true }
+      )
       .then((response) => {
         if (response.data === "로그인 성공") {
           setLoggedIn({
             status: true,
             username,
           });
+          console.log(response);
           navigate("/");
-        } else console.log(response.data);
+        } else console.log(response);
       });
   };
 
