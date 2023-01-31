@@ -4,11 +4,12 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
+import Navigator from "./components/Navigator";
 
 function App() {
   return (
     <>
-      <Header />
+      <Navigator />
       <Outlet />
     </>
   );

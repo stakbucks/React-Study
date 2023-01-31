@@ -6,6 +6,7 @@ import { RecoilRoot } from "recoil";
 import { RouterProvider } from "react-router-dom";
 import router from "./Router";
 import { CookiesProvider } from "react-cookie";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const queryClient = new QueryClient();
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { loggedInState } from "../../src/atoms";
 import { useCookies } from "react-cookie";
-
+import {Nav as Navbar} from "react-bootstrap";
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;

@@ -6,7 +6,7 @@ import { useQuery, useMutation } from "react-query";
 import { loggedInState } from "../../src/atoms";
 import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import Button from "react-bootstrap/Button";
 const SERVER_BASE_URL = "http://localhost:4000";
 
 const Wrapper = styled.div`
@@ -75,7 +75,9 @@ function Login() {
             placeholder="비밀번호"
           />
         </Section>
-        <button>로그인</button>
+        <Button type="submit" variant="outline-primary">
+          로그인
+        </Button>{" "}
       </Form>
     </Wrapper>
   );

@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 const Form = styled.form``;
 const Replys = styled.div`
-  width: 410px;
+  width: 910px;
   height: 460px;
   border: 1px solid black;
   margin-top: 20px;
