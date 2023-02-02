@@ -11,7 +11,9 @@ import Button from "react-bootstrap/esm/Button";
 import styled from "styled-components";
 
 const StyledNavbar = styled(Navbar)`
-  width: 80%;
+  width: 100%;
+  background-color: grey;
+  margin-bottom: 50px;
 `;
 
 function Navigator() {
@@ -26,7 +28,7 @@ function Navigator() {
     });
   };
   return (
-    <StyledNavbar bg="dark" variant="dark" expand="lg">
+    <StyledNavbar expand="lg">
       <Container>
         <Navbar.Brand href="/">Stakbucks</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

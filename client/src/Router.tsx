@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Board from "./components/Board";
+import Modal from "./components/Modal";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -19,6 +20,12 @@ const router = createBrowserRouter([
           {
             path: "board",
             element: <Board />,
+            children: [
+              {
+                path: "modal/:id",
+                element: <Modal />,
+              },
+            ],
           },
         ],
       },

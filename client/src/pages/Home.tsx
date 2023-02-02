@@ -15,7 +15,7 @@ function Home() {
   return (
     <Wrapper>
       <h1>This is my homepage</h1>
-      <Outlet />;
+      <Outlet />
     </Wrapper>
   );
 }

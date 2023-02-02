@@ -35,11 +35,30 @@ app.delete("/delete/:id", (req, res) => {
   const userInfo = database.find((user) => user.username === username);
   console.log(userInfo);
   if (!userInfo) {
-    res.status(401).send("invalid token");
+    res.status(401).send("invalid user");
   } else {
     const id = parseInt(req.params.id);
     replys = replys.filter((reply) => reply.id !== id);
     res.send("deleted");
+  }
+});
+
+app.put("/update/:id", (req, res) => {
+  const { access_token } = req.cookies;
+  if (!access_token) {
+    res.status(401).send("invalid token");
+  }
+  const { username } = jwt.verify(access_token, "secure");
+  const userInfo = database.find((user) => user.username === username);
+  if (!userInfo) {
+    res.status(401).send("invalid user");
+  } else {
+    const id = parseInt(req.params.id);
+    console.log(req.body.newReply);
+    const newReply = { id, text: req.body.newReply };
+    const index = replys.findIndex((reply) => reply.id === id);
+    replys[index] = newReply;
+    res.send("updated");
   }
 });
 
